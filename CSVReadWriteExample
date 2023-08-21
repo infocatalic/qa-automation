@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class EmployeeData {
     public static void main(String[] args) {
-        String filePath = "F:\\eclipse\\Employee_Data.csv";
+        String filePath = "F:\\eclipse\\Employee_Data.csv"; // Path relative to your excel file
 
         // Data for writing to CSV
         String[] headers = {"First_Name", "Last_Name", "Age"};
