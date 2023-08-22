@@ -1,0 +1,53 @@
+import java.io.FileWriter;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+
+public class EmployeeData {
+    public static void main(String[] args) {
+        String filePath = "F:\\eclipse\\Employee_Data.csv"; // Path relative to your excel file
+
+        // Data for writing to CSV
+        String[] headers = {"First_Name", "Last_Name", "Age"};
+        String[][] data = {
+            {"Rajesh", "Patil", "24"},
+            {"Niraj", "Patil", "25"},
+            {"Shardul", "Kulkarni", "40"},
+            {"Anil", "Pawar", "28"},
+            {"Suraj", "Kamble", "35"},
+            {"Sarah", "Patel", "22"},
+            {"Robert", "Davis", "32"},
+            {"Sagar", "Sharma", "29"},
+            {"Daya", "Kulkarni", "37"},
+            {"Vedant", "Kumar", "26"}
+        };
+
+        // Writing data to CSV
+        try (FileWriter writer = new FileWriter(filePath)) {
+            // Write headers
+            writer.write(String.join(",", headers));
+            writer.write("\n");
+
+            // Write data rows
+            for (String[] row : data) {
+                writer.write(String.join(",", row));
+                writer.write("\n");
+            }
+
+            System.out.println("Excel file created successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Reading data from CSV
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] readData = line.split(",");
+                System.out.println("First_Name: " + readData[0] + ", Last_Name: " + readData[1] + ", Age: " + readData[2]);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
